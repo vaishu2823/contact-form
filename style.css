@@ -1,0 +1,255 @@
+/* ====== MAIN ANIMATED BACKGROUND ====== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+
+  background: linear-gradient(120deg, #ff6b6b, #845ec2, #4b4453, #00c9a7, #f9f871);
+  background-size: 500% 500%;
+  animation: neonFlow 18s ease infinite;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  overflow: hidden;
+}
+
+/* Background gradient animation */
+@keyframes neonFlow {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 100% 0%; }
+  75% { background-position: 0% 100%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+/* ====== FLOATING PARTICLES ====== */
+.particle {
+  position: absolute;
+  background: rgba(255,255,255,0.6);
+  border-radius: 50%;
+  animation: floatParticles 12s infinite linear;
+}
+
+@keyframes floatParticles {
+  0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(-20vh) scale(1.3); opacity: 0; }
+}
+
+/* Generate 20 random floating particles */
+body::before {
+  content: '';
+  position: absolute;
+  width: 200vw;
+  height: 200vh;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.4) 4px, transparent 4px),
+    radial-gradient(circle, rgba(255,255,255,0.4) 4px, transparent 4px),
+    radial-gradient(circle, rgba(255,255,255,0.4) 4px, transparent 4px);
+  background-size: 150px 150px;
+  animation: moveDots 20s linear infinite;
+  opacity: 0.4;
+}
+
+@keyframes moveDots {
+  from { transform: translate(-20px, -20px); }
+  to   { transform: translate(20px, 20px); }
+}
+
+
+/* ====== FLOATING BUBBLES ====== */
+.bubble {
+  position: absolute;
+  bottom: -100px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 50%;
+  animation: riseBubbles 14s infinite linear;
+}
+
+@keyframes riseBubbles {
+  from { transform: translateY(0); }
+  to { transform: translateY(-120vh); }
+}
+
+
+/* ====== GLOW RINGS IN BACKGROUND ====== */
+body::after {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border: 3px solid rgba(255,255,255,0.4);
+  border-radius: 50%;
+  animation: spinRing 25s linear infinite;
+  top: -100px;
+  right: -150px;
+  filter: blur(2px);
+}
+
+@keyframes spinRing {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+/* ====== GLASS FORM CARD ====== */
+.container {
+  width: 400px;
+  padding: 28px;
+
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 0 25px rgba(255,255,255,0.6),
+    0 0 60px rgba(255,255,255,0.3);
+
+  animation: formFadeIn 1.3s ease forwards;
+  transform: translateY(40px);
+  opacity: 0;
+
+  transition: transform 0.2s ease;
+}
+
+/* Slide-in fade animation */
+@keyframes formFadeIn {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ====== 3D Tilt Effect ====== */
+.container:hover {
+  transform: scale(1.03) rotateX(6deg) rotateY(-6deg);
+}
+
+
+/* ====== Title Glow ====== */
+h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #fff;
+  font-size: 26px;
+
+  animation: titleGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  from { text-shadow: 0 0 8px #fff; }
+  to { text-shadow: 0 0 22px #fff; }
+}
+
+
+/* Labels */
+label {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+/* ====== Inputs ====== */
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.25);
+  border: none;
+  outline: none;
+  color: #fff;
+  margin-top: 5px;
+  transition: 0.3s;
+}
+
+/* Input focus glow */
+input:focus,
+textarea:focus {
+  box-shadow: 0 0 15px rgba(255,255,255,0.9);
+  transform: scale(1.03);
+}
+
+
+/* Error text */
+.error {
+  color: #ffb3b3;
+  font-size: 12px;
+  height: 14px;
+}
+
+
+/* ====== Button + Ripple Effect ====== */
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #fff;
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+/* Glow on hover */
+button:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 20px #fff, 0 0 40px rgba(255,255,255,0.5);
+}
+
+/* Click Ripple */
+button:active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: ripple 0.5s ease-out;
+}
+
+@keyframes ripple {
+  from { width: 5px; height: 5px; opacity: 1; }
+  to { width: 250px; height: 250px; opacity: 0; }
+}
+
+
+/* ====== Success Message Fade ====== */
+#successMsg {
+  color: #e2ffe2;
+  margin-top: 12px;
+  text-align: center;
+  animation: successFade 1s ease;
+}
+
+@keyframes successFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+/* ====== Error Shake Animation ====== */
+.shake {
+  animation: shakeError 0.3s ease;
+}
+
+@keyframes shakeError {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
